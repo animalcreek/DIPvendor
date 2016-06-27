@@ -10,7 +10,7 @@ In brief:
  - run the `genID.py` script
  - create a pull request to update
 
-The simple python script can be called from the terminal.
+The simple python 2.7 script can be called from the terminal.
 Call script with three arguments: contact email address, name of company, and, optionally, a preferred 32-bit vendor ID number in hex format. For example:
 ```
 $ python genID.py person@dipmaker.com "DIP Makers Inc." 0x00000001'
