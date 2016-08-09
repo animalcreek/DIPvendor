@@ -1,76 +1,80 @@
 {
-	"vendorIDs": {
-		"0x00000002": {
-			"contact": "noreply@getchip.com",
-			"vendor": "Prototype 02"
-		},
-		"0x00000003": {
-			"contact": "noreply@getchip.com",
-			"vendor": "Prototype 03"
-		},
-		"0x00000000": {
-			"contact": "noreply@getchip.com",
-			"vendor": "Prototype 00"
-		},
-		"0x00000001": {
-			"contact": "noreply@getchip.com",
-			"vendor": "Prototype 01"
-		},
-		"0x00000006": {
-			"contact": "noreply@getchip.com",
-			"vendor": "Prototype 06"
-		},
-		"0x00000007": {
-			"contact": "noreply@getchip.com",
-			"vendor": "Prototype 07"
-		},
-		"0x00000004": {
-			"contact": "noreply@getchip.com",
-			"vendor": "Prototype 04"
-		},
-		"0x00000005": {
-			"contact": "noreply@getchip.com",
-			"vendor": "Prototype 05"
-		},
-		"0x009d011a": {
-			"contact": "ahoyahoy@nextthing.co",
-			"vendor": "Next Thing Co"
-		},
-		"0x00000009": {
-			"contact": "noreply@getchip.com",
-			"vendor": "Prototype 09"
-		},
-		"0x0000000b": {
-			"contact": "noreply@getchip.com",
-			"vendor": "Prototype 11"
-		},
-		"0x0000000c": {
-			"contact": "noreply@getchip.com",
-			"vendor": "Prototype 12"
-		},
-		"0x0000000a": {
-			"contact": "noreply@getchip.com",
-			"vendor": "Prototype 10"
-		},
-		"0x0000000f": {
-			"contact": "noreply@getchip.com",
-			"vendor": "Prototype 15"
-		},
-		"0x0000000d": {
-			"contact": "noreply@getchip.com",
-			"vendor": "Prototype 13"
-		},
-		"0x0000000e": {
-			"contact": "noreply@getchip.com",
-			"vendor": "Prototype 14"
-		},
-		"0x00000042": {
-			"contact": "kolja.windeler@gmail.com",
-			"vendor": "JKW dips"
-		},
-		"0x00000008": {
-			"contact": "noreply@getchip.com",
-			"vendor": "Prototype 08"
-		}
-	}
+    "vendorIDs":{
+        "0x00000000":{
+            "contact":"noreply@getchip.com",
+            "vendor":"Prototype 00"
+        },
+        "0x00000001":{
+            "contact":"noreply@getchip.com",
+            "vendor":"Prototype 01"
+        },
+        "0x00000002":{
+            "contact":"noreply@getchip.com",
+            "vendor":"Prototype 02"
+        },
+        "0x00000003":{
+            "contact":"noreply@getchip.com",
+            "vendor":"Prototype 03"
+        },
+        "0x00000004":{
+            "contact":"noreply@getchip.com",
+            "vendor":"Prototype 04"
+        },
+        "0x00000005":{
+            "contact":"noreply@getchip.com",
+            "vendor":"Prototype 05"
+        },
+        "0x00000006":{
+            "contact":"noreply@getchip.com",
+            "vendor":"Prototype 06"
+        },
+        "0x00000007":{
+            "contact":"noreply@getchip.com",
+            "vendor":"Prototype 07"
+        },
+        "0x00000008":{
+            "contact":"noreply@getchip.com",
+            "vendor":"Prototype 08"
+        },
+        "0x00000009":{
+            "contact":"noreply@getchip.com",
+            "vendor":"Prototype 09"
+        },
+        "0x0000000a":{
+            "contact":"noreply@getchip.com",
+            "vendor":"Prototype 10"
+        },
+        "0x0000000b":{
+            "contact":"noreply@getchip.com",
+            "vendor":"Prototype 11"
+        },
+        "0x0000000c":{
+            "contact":"noreply@getchip.com",
+            "vendor":"Prototype 12"
+        },
+        "0x0000000d":{
+            "contact":"noreply@getchip.com",
+            "vendor":"Prototype 13"
+        },
+        "0x0000000e":{
+            "contact":"noreply@getchip.com",
+            "vendor":"Prototype 14"
+        },
+        "0x0000000f":{
+            "contact":"noreply@getchip.com",
+            "vendor":"Prototype 15"
+        },
+        "0x00000042":{
+            "contact":"kolja.windeler@gmail.com",
+            "vendor":"JKW dips"
+        },
+        "0x009d011a":{
+            "contact":"ahoyahoy@nextthing.co",
+            "vendor":"Next Thing Co"
+        },
+        "0x4b363134":{
+            "contact":"chip@kodachi.com",
+            "vendor":"Kodachi 6*14, LLC"
+        }
+    }
 }

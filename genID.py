@@ -11,43 +11,81 @@ import re
 
 def makeid(email,vendorname,preferredID=None):
     prefID = ''
+
     if preferredID:
         prefID = preferredID.lower()
     else:
         prefID = hex(random.randrange(0,2147483647))
+
     # read json of existing IDs
     jsonfile = open('DIP_vendors.json')
-    jsondata = jsonfile.read()
-    print jsondata
-    vendorDB = json.loads(jsondata)
-    # parse existing IDs into list to use to check uniqueness:
-    currentIDs = list()
-    for key, data in vendorDB.iteritems():
-        for vid,vinfo in data.iteritems():
-            print 'VID: '+str(vid)
-            currentIDs.append(vid)
-    # make sure JSON is ok
-    if not preflight(currentIDs):
-        print 'The JSON file does not have contain all unique vendor IDs. Please Fix DIP_vendors.json'
+    vendorDB = json.load(jsonfile)
+
+    errors = list()     # keep track of things that go wrong
+    currentIDs = dict() # dictionary form of vendor list, for ease of later checks
+    prototypeIDs = 0    # keep track of which prototype IDs are present
+
+    if "vendorIDs" not in vendorDB:
+        errors.append("No vendorIDs at toplevel of DIP_vendors.json")
+    else:
+        vendorIDs = vendorDB["vendorIDs"]
+
+        # parse existing IDs into list to use to check uniqueness:
+        for vid, vinfo in vendorIDs.iteritems():
+            # Is this a prototype ID?
+            intID = int(vid, 0)
+
+            if intID < 16:
+                # Yup.
+                prototypeIDs |= (1 << intID)
+            else:
+                print("Vendor %s is %s" % (vid, vinfo['vendor']))
+
+                if vid in currentIDs:
+                    errors.append("Vendor ID %s is duplicated" % vid)
+                else:
+                    currentIDs[vid] = vinfo
+
+        print("Loaded %d vendor ID%s" % (len(currentIDs), "" if (len(currentIDs) == 1) else "s"))
+
+        # We know all the IDs are unique. Do we have all the prototype IDs?
+        if prototypeIDs != 0xFFFF:
+            errors.append("Prototype IDs 0 - F must be present; some are missing")
+
+        # Do we have Next Thing's ID?
+        if "0x009d011a" not in currentIDs:
+            errors.append("Next Thing isn't in the vendors list!")
+
+    if errors:
+        sys.stderr.write("\n".join(errors))
+        sys.stderr.write("\n")
+        sys.stderr.write("Please fix DIP_vendors.json and try again.\n")
         quit()
     else:
         # if the desired ID matches an existing ID, generate a new one
         if prefID in currentIDs:
-            print ' :( Your chosen Vendor ID '+prefID+' is already taken.'
+            print(" :( Your chosen Vendor ID %s is already taken" % prefID)
             choice = raw_input(' > Type "e" to exit or "g" to generate a new ID: ')
             if choice == 'g':
                 while prefID in currentIDs:
                     prefID = hex(random.randrange(0,2147483647))
-                print ' + Your new vendor ID is: '+prefID
             else:
-                print 'quit'
+                print("quit")
                 quit()
+
+        print(" + Your new vendor ID is: %s" % prefID)
+
         # add info to JSON file
-        newvendor = { prefID: {"vendor": vendorname,"contact": email} }
-        vendorDB['vendorIDs'].update(newvendor)
+        vendorDB["vendorIDs"][prefID] = {
+            "vendor": vendorname,
+            "contact": email
+        }
+
+        # save it!
         with open('DIP_vendors.json','w') as writejson:
-            json.dump(vendorDB,writejson)
-        print ' :) vendorDB updated'
+            json.dump(vendorDB, writejson, indent=4, separators=(',',':'), sort_keys=True)
+
+        print(" :) vendorDB updated")
 
 # simple regex check of email format.
 def valid_email(email):
@@ -55,22 +93,13 @@ def valid_email(email):
     if match:
         return match
     else:
-        print ' ! email not valid format. Call script with 3 arguments (last is optional):\n  $ python genID.py person@dipmaker.com "DIP Makers Inc." 0x00000001'
+        print(' ! email not valid format. Call script with 3 arguments (last is optional):\n  $ python genID.py person@dipmaker.com "DIP Makers Inc." 0x00000001')
         quit()
-
-# test out the vendor IDs to make sure they are unique. Unfortunately, json.loads() will filter out exactly matched keys, so we can't do much about that.
-def preflight(x):
-    print '-- preflight --'
-    seen = set()
-    # http://stackoverflow.com/questions/5278122/checking-if-all-elements-in-a-list-are-unique
-    test = not any( i.lower() in seen or seen.add(i.lower() ) for i in x)
-    print '>> preflight result '+str(test)
-    return test
 
 # TO DO - insert preflight on JSON to make sure it is OK
 # test arguments sys.argv to make sure all is good, then call makeid.
 if len(sys.argv) < 3:
-    print ' ! Call genID.py with at least email and vendorname arguments.\n  Optional 3rd argument is desired ID, e.g.:\n     $ python genID.py person@dipmaker.com "DIP Makers Inc." 0x00000001'
+    print(' ! Call genID.py with at least email and vendorname arguments.\n  Optional 3rd argument is desired ID, e.g.:\n     $ python genID.py person@dipmaker.com "DIP Makers Inc." 0x00000001')
 elif len(sys.argv) == 3:
     if valid_email(sys.argv[1]):
         makeid(sys.argv[1],sys.argv[2])
