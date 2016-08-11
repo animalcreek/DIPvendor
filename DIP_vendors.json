@@ -75,6 +75,14 @@
         "0x4b363134":{
             "contact":"chip@kodachi.com",
             "vendor":"Kodachi 6*14, LLC"
+        },
+        "0x78600000":{
+            "contact":"kashif@compulife.com.pk",
+            "vendor":"CompuLife, Pakistan"
+        },
+        "0x78678600":{
+            "contact":"kashif@compulife.com.pk",
+            "vendor":"DeciSense"
         }
     }
 }
