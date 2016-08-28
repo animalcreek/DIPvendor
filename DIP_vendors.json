@@ -76,6 +76,10 @@
             "contact":"chip@kodachi.com",
             "vendor":"Kodachi 6*14, LLC"
         },
+        "0x4c616273":{
+            "contact":"dip@voneicken.com",
+            "vendor":"JeeLabs"
+        },
         "0x78600000":{
             "contact":"kashif@compulife.com.pk",
             "vendor":"CompuLife, Pakistan"
