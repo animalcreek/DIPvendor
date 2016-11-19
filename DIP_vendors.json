@@ -80,6 +80,10 @@
             "contact":"dip@voneicken.com",
             "vendor":"JeeLabs"
         },
+        "0x51444e58":{
+            "contact":"hardware@qdnx.org",
+            "vendor":"Quadronyx"
+        },
         "0x78600000":{
             "contact":"kashif@compulife.com.pk",
             "vendor":"CompuLife, Pakistan"
