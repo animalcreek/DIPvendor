@@ -88,6 +88,10 @@
             "contact":"hardware@qdnx.org",
             "vendor":"Quadronyx"
         },
+        "0x706e335f":{
+            "contact":"pn3@mew.cx",
+            "vendor":"Project Azide"
+        },
         "0x78600000":{
             "contact":"kashif@compulife.com.pk",
             "vendor":"CompuLife, Pakistan"
